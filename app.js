@@ -126,7 +126,6 @@ function checkForMatch (){
         cards[optionTwoId].setAttribute('src', 'images/pattern.png');
         alert("Sorry Try Again");
     }
-
     
     //clear arrays
     cardsChosen = [];
@@ -137,10 +136,8 @@ function checkForMatch (){
     //alert user once all pairs have been found
     if (cardsWon.length === cardArray.length/2){
         resultDisplay.textContent="Congrats! You found them All";
-    }
-    
+    } 
 }
-
 
 //flip chosen card
 function flipCard (){
