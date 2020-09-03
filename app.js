@@ -1,9 +1,6 @@
-
-
 document.addEventListener('DOMContentLoaded' , () => {
 
 //card options
-
 const cardArray = [
     {
         name: 'fries',
@@ -56,7 +53,7 @@ const cardArray = [
 ];
 
 
-//
+//randomize cards
 cardArray.sort(() => 0.5 - Math.random());
 
 //Select html element with class name "grid"
@@ -70,7 +67,7 @@ var cardsChosen = [];
 var cardsChosenId = [];
 var cardsWon = [];
 
-
+var card;
 //Create board
 function createBoard (){
 
@@ -78,23 +75,26 @@ function createBoard (){
     for (let i = 0; i < cardArray.length ; i++){
         
         //create img element to be added to DOM
-        var card = document.createElement ('img');
+        card = document.createElement ('img');
 
         //setting attributes to new element
         card.setAttribute('src', 'images/pattern.png');
         card.setAttribute('data-id', i);
         
         //each card calls function flipCard when clicked
-        card.addEventListener('click', flipCard)
+        card.addEventListener('click', flipCard);
         
         //adding element to html/DOM
         grid.appendChild(card);
-        
-    }    
+         
+    }   
+
 }
 
 //Check for matching cards
 function checkForMatch (){
+    
+    //test = [];
 
     //Select all img elements 
     var cards = document.querySelectorAll("img");
@@ -105,12 +105,17 @@ function checkForMatch (){
     
 
     //if ids match then alert MATCH FOUND
-    if  (cardsChosen[0] === cardsChosen[1]){
+        if  (cardsChosen[0] === cardsChosen[1]){
+      
         alert("You Found a Match");
         
         //update board spaces to white space
         cards[optionOneId].setAttribute('src', 'images/white.png');
         cards[optionTwoId].setAttribute('src', 'images/white.png');
+            
+        //remove event listener to matched cards. *fixes bug 
+        cards[optionOneId].removeEventListener("click", flipCard);
+        cards[optionTwoId].removeEventListener("click", flipCard);
         
         //add cards matched to cardsWon Array
         //contains 1 card per pair
@@ -133,10 +138,11 @@ function checkForMatch (){
     if (cardsWon.length === cardArray.length/2){
         resultDisplay.textContent="Congrats! You found them All";
     }
+    
 }
 
 
-//Flip chosen card
+//flip chosen card
 function flipCard (){
     
     //get card by id
@@ -154,16 +160,28 @@ function flipCard (){
     
     this.setAttribute("src", cardArray[cardId].img);
     
+    
+    //add if/else to fix same card selection match bug
+    if(cardsChosenId[0] === cardsChosenId[1]){
+        
+        //do not add to arrays if card selected is the same card and not its pair
+        cardsChosenId.pop();
+        cardsChosen.pop();
+        return;
+        
+    }else{
         //once we have picked two cards, check for a match
-        if (cardsChosen.length === 2){
-            
+        if (cardsChosen.length  == 2){
+   
             //allows system to display second img before cheking for a match
             setTimeout (checkForMatch, 500);
             
         }
+    }
 }
 
-//run function
+//run function  
 createBoard ();
+    
 
 })
