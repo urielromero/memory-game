@@ -28,12 +28,22 @@ https://urielromero.github.io/memory-game/
 Development: 
 
 The main JS functions and methods utilized in this game are:
-push()
-querySelector()
-setAttribute()
-getAttribute()
-createElement()
-appendChild()
-Math.random()
-sort()
-For loop
+
+ • appendChild()
+ • createElement()
+ • getAttribute()
+ • setAttribute()
+ • For loops
+ • Math.random()
+ • push()
+ • querySelector()
+ • sort()
+
+ 
+
+
+
+
+
+
+
