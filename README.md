@@ -23,3 +23,17 @@ Scoreboard, timer, players.
 
 Click link to play!
 https://urielromero.github.io/memory-game/
+
+
+Development: 
+
+The main JS functions and methods utilized in this game are:
+push()
+querySelector()
+setAttribute()
+getAttribute()
+createElement()
+appendChild()
+Math.random()
+sort()
+For loop
